@@ -94,8 +94,8 @@ function RedGui(ThemeBackground)
 	Mini.Size = UDim2.new(0, 25, 0, 25)
 	Mini.Position = UDim2.new(0, 125, 0, 0)
 	Mini.Text = "-"
-	Mini.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Mini.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Mini.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Mini.TextColor3 = Color3.fromRGB(0, 0, 0)
 	Mini.TextScaled = false
 	Mini.TextSize = 27.5
 	Mini.Visible = true
@@ -488,6 +488,44 @@ function RedGui(ThemeBackground)
 		end)
 		
 		return ReturnThings
+	end
+	
+	function addToggleSelect(Name, currentButton, Table, Name)
+		if Table[Name] == true then
+			buttonColor = Color3.new(0, 1, 0)
+		elseif Table[Name] == false then
+			buttonColor = Color3.new(1, 0, 0)
+		end
+		if currentButton == nil then
+			curButton = _G.curSelectedButton
+			curFrame = _G.curSelected
+		elseif currentButton ~= nil then
+			curButton = currentButton.Button
+			curFrame = currentButton.Frame
+		end
+		local buttonColor = buttonColor
+		local curFrame = curFrame
+		local curButton = curButton
+		local newToggleSelect = Instance.new("TextButton", curFrame)
+		MakeInvButton(curFrame)
+		newToggleSelect.Name = Name
+		newToggleSelect.Size = UDim2.new(0, 125, 0, 25)
+		newToggleSelect.Text = Name
+		newToggleSelect.BackgroundColor3 = buttonColor
+		newToggleSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
+		newToggleSelect.BorderSizePixel = 2
+		newToggleSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
+		newToggleSelect.TextScaled = true
+		newToggleSelect.BackgroundTransparency = 0.5
+		newToggleSelect.MouseButton1Click:Connect(function()
+			if Table[Name] == true then
+				Table[Name] = false
+			elseif Table[Name] == false then
+				Table[Name] = true
+			end
+		end)
+		
+		return newToggleSelect
 	end
 	
 	function addClickSelect(Text, currentButton)
