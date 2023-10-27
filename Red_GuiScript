@@ -490,7 +490,7 @@ function RedGui(ThemeBackground)
 		return ReturnThings
 	end
 	
-	function addToggleSelect(Name, Table, Name, currentButton)
+	function addToggleSelect(Table, Name, currentButton)
 		if Table[Name] == true then
 			buttonColor = Color3.new(0, 1, 0)
 		elseif Table[Name] == false then
