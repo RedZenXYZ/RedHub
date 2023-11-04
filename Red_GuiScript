@@ -65,7 +65,7 @@ function RedGui(ThemeBackground)
 	Frame2.Draggable = false
 	Frame2.Visible = true
 	
-	TextLabel.Name = "TextLabel"
+	TextLabel.Name = "Title"
 	TextLabel.Parent = Frame
 	TextLabel.Size = UDim2.new(0, 100, 0, 25)
 	TextLabel.Position = UDim2.new(0, 25, 0, 0)
@@ -234,9 +234,9 @@ function RedGui(ThemeBackground)
 		MaxPage = MaxPage + 1
 		local newScrollFrame = Instance.new("ScrollingFrame", FrameStorage)
 		local List = Instance.new("UIListLayout", newScrollFrame)
-		local InvButtonOne = Instance.new("TextButton", newScrollFrame)
+		local InvButtonOne = Instance.new("Frame", newScrollFrame)
 		
-		_G.curFrame = newScrollFrame
+		curFrame = newScrollFrame
 		
 		if TitleName == nil then
 			addTitle("Made by Red_BloxZ")
@@ -262,7 +262,6 @@ function RedGui(ThemeBackground)
 		List.SortOrder = Enum.SortOrder.LayoutOrder
 		
 		InvButtonOne.Name = "Inv Button 1"
-		InvButtonOne.Text = ""
 		InvButtonOne.Size = UDim2.new(0, 0, 0, 0)
 		InvButtonOne.BorderSizePixel = 0
 		InvButtonOne.BackgroundTransparency = 1
@@ -276,8 +275,8 @@ function RedGui(ThemeBackground)
 	end
 	
 	function addButton(Text, callback)
-		local newButton = Instance.new("TextButton", _G.curFrame)
-		MakeInvButton(_G.curFrame)
+		local newButton = Instance.new("TextButton", curFrame)
+		MakeInvButton(curFrame)
 		newButton.Name = Text
 		newButton.Size = UDim2.new(0, 125, 0, 25)
 		newButton.Text = Text
@@ -293,8 +292,8 @@ function RedGui(ThemeBackground)
 	end
 	
 	function addTextLabel(Text)
-		local newTextLabel = Instance.new("TextLabel", _G.curFrame)
-		MakeInvButton(_G.curFrame)
+		local newTextLabel = Instance.new("TextLabel", curFrame)
+		MakeInvButton(curFrame)
 		newTextLabel.Name = Text
 		newTextLabel.Size = UDim2.new(0, 125, 0, 25)
 		newTextLabel.Text = Text
@@ -310,8 +309,8 @@ function RedGui(ThemeBackground)
 	end
 	
 	function addTextBox(Text, holderText)
-		local newTextBox = Instance.new("TextBox", _G.curFrame)
-		MakeInvButton(_G.curFrame)
+		local newTextBox = Instance.new("TextBox", curFrame)
+		MakeInvButton(curFrame)
 		newTextBox.Name = Text
 		newTextBox.Size = UDim2.new(0, 125, 0, 25)
 		newTextBox.Text = Text
@@ -329,8 +328,8 @@ function RedGui(ThemeBackground)
 	
 	function addToggle(buttonText, callback, delay)
 		if delay == nil then
-			local newToggleButton = Instance.new("TextButton", _G.curFrame)
-			MakeInvButton(_G.curFrame)
+			local newToggleButton = Instance.new("TextButton", curFrame)
+			MakeInvButton(curFrame)
 			newToggleButton.Name = buttonText
 			newToggleButton.Size = UDim2.new(0, 125, 0, 25)
 			newToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -355,11 +354,11 @@ function RedGui(ThemeBackground)
 			end)
 			return newToggleButton
 		else
-			local ButtonFrame = Instance.new("Frame", _G.curFrame)
+			local ButtonFrame = Instance.new("Frame", curFrame)
 			local newToggleButton = Instance.new("TextButton", ButtonFrame)
 			local SettingButton = Instance.new("TextButton", newToggleButton)
 			local delayNum = Instance.new("TextBox", newToggleButton)
-			MakeInvButton(_G.curFrame)
+			MakeInvButton(curFrame)
 			ButtonFrame.Name = buttonText .. "ButtonFrame"
 			ButtonFrame.Size = UDim2.new(0, 125, 0, 25)
 			ButtonFrame.BackgroundTransparency = 1
@@ -429,11 +428,11 @@ function RedGui(ThemeBackground)
 	end
 	
 	function addSelected(Text)
-		local newSelectedButton = Instance.new("TextButton", _G.curFrame)
-		MakeInvButton(_G.curFrame)
+		local newSelectedButton = Instance.new("TextButton", curFrame)
+		MakeInvButton(curFrame)
 		local newSelectedFrame = Instance.new("ScrollingFrame", SelectedStorage)
 		local List = Instance.new("UIListLayout", newSelectedFrame)
-		local InvButtonOne = Instance.new("TextButton", newSelectedFrame)
+		local InvButtonOne = Instance.new("Frame", newSelectedFrame)
 		
 		local ReturnThings = {
 			Frame = newSelectedFrame,
@@ -444,7 +443,6 @@ function RedGui(ThemeBackground)
 		_G.curSelectedButton = newSelectedButton
 		
 		InvButtonOne.Name = "Inv Button 1"
-		InvButtonOne.Text = ""
 		InvButtonOne.Size = UDim2.new(0, 0, 0, 0)
 		InvButtonOne.BorderSizePixel = 0
 		InvButtonOne.BackgroundTransparency = 1
@@ -562,9 +560,8 @@ function RedGui(ThemeBackground)
 		if frame:FindFirstChild("Inv Button 2") then
 			frame:FindFirstChild("Inv Button 2"):Destroy()
 		end
-		local InvButtonTwo = Instance.new("TextButton", frame)
+		local InvButtonTwo = Instance.new("Frame", frame)
 		InvButtonTwo.Name = "Inv Button 2"
-		InvButtonTwo.Text = ""
 		InvButtonTwo.Size = UDim2.new(0, 0, 0, 0)
 		InvButtonTwo.BorderSizePixel = 0
 		InvButtonTwo.BackgroundTransparency = 1
