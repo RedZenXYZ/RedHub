@@ -558,6 +558,10 @@ function RedGui(ThemeBackground)
 		return newClickSelect
 	end
 	
+	function OnKillGui(callback)
+		KillGui.MouseButton1Click:Connect(callback)
+	end
+	
 	function MakeInvButton(frame)
 		if frame:FindFirstChild("Inv Button 2") then
 			frame:FindFirstChild("Inv Button 2"):Destroy()
