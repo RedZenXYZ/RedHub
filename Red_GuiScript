@@ -11,7 +11,7 @@ function RedGui(ThemeBackground)
 	}
 	
 	if ThemeBackground ~= nil and table.find(Themes, ThemeBackground:lower()) then
-		ThemeColor = loadstring(game:HttpGet('return Themes["' .. ThemeBackground:lower() .. '"]'))()
+		ThemeColor = loadstring('return Themes["' .. ThemeBackground:lower() .. '"]')()
 	else
 		ThemeColor = Themes["red"]
 	end
