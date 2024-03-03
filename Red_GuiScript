@@ -1,3 +1,19 @@
+----- Main GUI -----
+ -- RedGui(color: string) > add Main Menu. ( NEED TO BE EXECUTE FIRST BEFORE ADDING PAGE )
+ -- createPage(page_name: string) > create Page for Buttons to add. ( NEED TO BE EXECUTE SECOND AFTER ADDED MAIN MENU )
+
+----- Buttons -----
+ -- addButton(button_text: string, callback: function)
+ -- addToggle(toggle_text: string, callback: function, delay: number or string) > Delay doesn't need to be add (Optional)
+ -- addTextBox(textbox_text: string, PlaceholderText: string) > Values doesn't need to be added (Optional)
+ -- addTextLabel(textlabel_text: string)
+ -- addSelected(button_text, string) > Add Button for Selecting Buttons. ( NEED TO BE ADD BEFORE ADDING SELECT BUTTONS )
+ -- addToggleSelect(Table: table, table_value: value, Parent: Button) > Parent doesn't need to be add (Optional)
+ -- addClickSelect(button_text: string, Parent: Button) > Parent doesn't need to be add (Optional)
+
+----- GUI Functions -----
+ -- OnKillGui(callback: function) > Actually callback After Closing GUI.
+
 function RedGui(ThemeBackground)
 	local Themes = {
 		["red"] = {
@@ -310,7 +326,15 @@ function RedGui(ThemeBackground)
 		return newTextLabel
 	end
 	
-	function addTextBox(Text, holderText)
+	function addTextBox(text1, holderText1)
+		local Text = text1
+		local holderText = holderText1
+		if Text == nil then
+			Text = ""
+		end
+		if holderText == nil then
+			holderText = ""
+		end
 		local newTextBox = Instance.new("TextBox", curFrame)
 		MakeInvButton(curFrame)
 		newTextBox.Name = Text
@@ -412,7 +436,7 @@ function RedGui(ThemeBackground)
 			delayNum.Name = "delayNum"
 			delayNum.Size = UDim2.new(0, 96, 0, 25)
 			delayNum.Position = UDim2.new(0, 0, 0, 0)
-			delayNum.Text = delay
+			delayNum.Text = tostring(delay)
 			delayNum.ClearTextOnFocus = true
 			delayNum.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			delayNum.BorderColor3 = Color3.fromRGB(0, 0, 0)
