@@ -12,7 +12,7 @@
  -- addClickSelect(button_text: string, Parent: Button) > Parent doesn't need to be add (Optional)
 
 ----- GUI Functions -----
- -- OnKillGui(callback: function) > Actually callback After Closing GUI.
+ -- OnKillGui(callback: function) > Fire callback After Closing GUI.
 
 function RedGui(ThemeBackground)
 	local Themes = {
