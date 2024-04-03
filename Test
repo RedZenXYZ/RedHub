@@ -36,7 +36,6 @@ function RedGui(ThemeBackground)
 	----- [ Main Gui ] -----
 	
 	local Titles = {}
-	local #FrameStorage:GetChildren() = 0
 	local RedGui = Instance.new("ScreenGui")
 	local Frame = Instance.new("Frame")
 	local Frame2 = Instance.new("Frame")
