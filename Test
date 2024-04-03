@@ -36,6 +36,7 @@ function RedGui(ThemeBackground)
 	----- [ Main Gui ] -----
 	
 	local Titles = {}
+	local #FrameStorage:GetChildren() = 0
 	local RedGui = Instance.new("ScreenGui")
 	local Frame = Instance.new("Frame")
 	local Frame2 = Instance.new("Frame")
@@ -278,11 +279,6 @@ function RedGui(ThemeBackground)
 		InvButtonOne.Size = UDim2.new(0, 0, 0, 0)
 		InvButtonOne.BorderSizePixel = 0
 		InvButtonOne.BackgroundTransparency = 1
-		
-		function addTitle(Text)
-			table.insert(Titles, Text)
-			TextLabel.Text = Titles[1]
-		end
 		
 		function addButton(Text, callback)
 			local newButton = Instance.new("TextButton", newScrollFrame)
@@ -574,36 +570,41 @@ function RedGui(ThemeBackground)
 			return newClickSelect
 		end
 		
-		function OnKillGui(callback)
+		return newScrollFrame
+	end
+	
+	function addTitle(Text)
+		table.insert(Titles, Text)
+		TextLabel.Text = Titles[1]
+	end
+	
+	function OnKillGui(callback)
 			KillGui.MouseButton1Click:Connect(callback)
 		end
 		
-		function MakeInvButton(frame)
-			if frame:FindFirstChild("Inv Button 2") then
-				frame:FindFirstChild("Inv Button 2"):Destroy()
-			end
-			local InvButtonTwo = Instance.new("Frame", frame)
-			InvButtonTwo.Name = "Inv Button 2"
-			InvButtonTwo.Size = UDim2.new(0, 0, 0, 0)
-			InvButtonTwo.BorderSizePixel = 0
-			InvButtonTwo.BackgroundTransparency = 1
+	function MakeInvButton(frame)
+		if frame:FindFirstChild("Inv Button 2") then
+			frame:FindFirstChild("Inv Button 2"):Destroy()
 		end
-		
-		--- [ Gui Script ] ---
-		spawn(function() FrameStorage:WaitForChild("1").Visible = true end)
-		
-		spawn(function()
-			repeat wait(1)
-				pcall(function()
-					if #FrameStorage:GetChildren() <= 1 then
-						Page.Visible = false
-					else
-						Page.Visible = true
-					end
-				end)
-			until RedGui.Parent == nil
-		end)
-		
-		return newScrollFrame
+		local InvButtonTwo = Instance.new("Frame", frame)
+		InvButtonTwo.Name = "Inv Button 2"
+		InvButtonTwo.Size = UDim2.new(0, 0, 0, 0)
+		InvButtonTwo.BorderSizePixel = 0
+		InvButtonTwo.BackgroundTransparency = 1
 	end
+	
+	--- [ Gui Script ] ---
+	spawn(function() FrameStorage:WaitForChild("1").Visible = true end)
+	
+	spawn(function()
+		repeat wait(1)
+			pcall(function()
+				if #FrameStorage:GetChildren() <= 1 then
+					Page.Visible = false
+				else
+					Page.Visible = true
+				end
+			end)
+		until RedGui.Parent == nil
+	end)
 end
