@@ -447,7 +447,7 @@ function RedGui(ThemeBackground)
 			local List = Instance.new("UIListLayout", newSelectedFrame)
 			local InvButtonOne = Instance.new("Frame", newSelectedFrame)
 			
-			local ReturnThings = {
+			local ReturnInstances = {
 				Frame = newSelectedFrame,
 				Button = newSelectedButton
 			}
@@ -498,75 +498,77 @@ function RedGui(ThemeBackground)
 				newSelectedFrame.Visible = not newSelectedFrame.Visible
 			end)
 			
-			return ReturnThings
-		end
-		
-		function addToggleSelect(Table, Name, currentButton)
-			if Table[Name] == true then
-				buttonColor = Color3.new(0, 1, 0)
-			elseif Table[Name] == false then
-				buttonColor = Color3.new(1, 0, 0)
-			end
-			if currentButton == nil then
-				curButton = getgenv().curSelectedButton
-				newScrollFrame = getgenv().curSelected
-			elseif currentButton ~= nil then
-				curButton = currentButton.Button
-				newScrollFrame = currentButton.Frame
-			end
-			local buttonColor = buttonColor
-			local newScrollFrame = newScrollFrame
-			local curButton = curButton
-			local newToggleSelect = Instance.new("TextButton", newScrollFrame)
-			MakeInvButton(newScrollFrame)
-			newToggleSelect.Name = Name
-			newToggleSelect.Size = UDim2.new(0, 125, 0, 25)
-			newToggleSelect.Text = Name
-			newToggleSelect.BackgroundColor3 = buttonColor
-			newToggleSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
-			newToggleSelect.BorderSizePixel = 2
-			newToggleSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
-			newToggleSelect.TextScaled = true
-			newToggleSelect.BackgroundTransparency = 0.5
-			newToggleSelect.MouseButton1Click:Connect(function()
+			function addToggleSelect(Table, Name, currentButton)
 				if Table[Name] == true then
-					Table[Name] = false
-					newToggleSelect.BackgroundColor3 = Color3.new(1, 0, 0)
+					buttonColor = Color3.new(0, 1, 0)
 				elseif Table[Name] == false then
-					Table[Name] = true
-					newToggleSelect.BackgroundColor3 = Color3.new(0, 1, 0)
+					buttonColor = Color3.new(1, 0, 0)
 				end
-			end)
-			
-			return newToggleSelect
-		end
-		
-		function addClickSelect(Text, currentButton)
-			if currentButton == nil then
-				curButton = getgenv().curSelectedButton
-				newScrollFrame = getgenv().curSelected
-			elseif currentButton ~= nil then
-				curButton = currentButton.Button
-				newScrollFrame = currentButton.Frame
+				if currentButton == nil then
+					curButton = newSelectedButton
+					newSelectedScrollFrame = newSelectedFrame
+				elseif currentButton ~= nil then
+					curButton = currentButton.Button
+					newScrollFrame = currentButton.Frame
+				end
+				local buttonColor = buttonColor
+				local newSelectedScrollFrame = newSelectedScrollFrame
+				local curButton = curButton
+				local newToggleSelect = Instance.new("TextButton", newScrollFrame)
+				MakeInvButton(newSelectedFrame)
+				MakeInvButton(newScrollFrame)
+				newToggleSelect.Name = Name
+				newToggleSelect.Size = UDim2.new(0, 125, 0, 25)
+				newToggleSelect.Text = Name
+				newToggleSelect.BackgroundColor3 = buttonColor
+				newToggleSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
+				newToggleSelect.BorderSizePixel = 2
+				newToggleSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
+				newToggleSelect.TextScaled = true
+				newToggleSelect.BackgroundTransparency = 0.5
+				newToggleSelect.MouseButton1Click:Connect(function()
+					if Table[Name] == true then
+						Table[Name] = false
+						newToggleSelect.BackgroundColor3 = Color3.new(1, 0, 0)
+					elseif Table[Name] == false then
+						Table[Name] = true
+						newToggleSelect.BackgroundColor3 = Color3.new(0, 1, 0)
+					end
+				end)
+				
+				return newToggleSelect
 			end
-			local newScrollFrame = newScrollFrame
-			local curButton = curButton
-			local newClickSelect = Instance.new("TextButton", newScrollFrame)
-			MakeInvButton(newScrollFrame)
-			newClickSelect.Name = Text
-			newClickSelect.Size = UDim2.new(0, 125, 0, 25)
-			newClickSelect.Text = Text
-			newClickSelect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			newClickSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
-			newClickSelect.BorderSizePixel = 2
-			newClickSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
-			newClickSelect.TextScaled = true
-			newClickSelect.BackgroundTransparency = 0.5
-			newClickSelect.MouseButton1Click:Connect(function()
-				curButton.Text = Text
-			end)
 			
-			return newClickSelect
+			function addClickSelect(Text, currentButton)
+				if currentButton == nil then
+					curButton = newSelectedButton
+					newSelectedScrollFrame = newSelectedFrame
+				elseif currentButton ~= nil then
+					curButton = currentButton.Button
+					newSelectedScrollFrame = currentButton.Frame
+				end
+				local newSelectedScrollFrame = newSelectedScrollFrame
+				local curButton = curButton
+				local newClickSelect = Instance.new("TextButton", newSelectedScrollFrame)
+				MakeInvButton(newSelectedFrame)
+				MakeInvButton(newScrollFrame)
+				newClickSelect.Name = Text
+				newClickSelect.Size = UDim2.new(0, 125, 0, 25)
+				newClickSelect.Text = Text
+				newClickSelect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+				newClickSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
+				newClickSelect.BorderSizePixel = 2
+				newClickSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
+				newClickSelect.TextScaled = true
+				newClickSelect.BackgroundTransparency = 0.5
+				newClickSelect.MouseButton1Click:Connect(function()
+					curButton.Text = Text
+				end)
+				
+				return newClickSelect
+			end
+			
+			return ReturnInstances
 		end
 		
 		return newScrollFrame
