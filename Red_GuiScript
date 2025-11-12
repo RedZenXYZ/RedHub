@@ -65,7 +65,7 @@ function RedGui(ThemeBackground)
 	Frame.BorderSizePixel = 2
 	Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	Frame.Position = UDim2.new(0.5, 0, 0.2, 0)
-	Frame.Size = UDim2.new(0.1325, 0, 0.0475, 0)
+	Frame.Size = UDim2.new(0, 150, 0, 25)
 	Frame.Active = true
 	Frame.Draggable = true
 	Frame.Visible = true
@@ -77,8 +77,8 @@ function RedGui(ThemeBackground)
 	Frame2.BorderColor3 = ThemeColor.FrameBorder
 	Frame2.BorderSizePixel = 2
 	Frame2.AnchorPoint = Vector2.new(0.5, 0.5)
-	Frame2.Position = UDim2.new(0.5, 0, 4.95, 0)
-	Frame2.Size = UDim2.new(1, 0, 7.55, 0)
+	Frame2.Position = UDim2.new(0, 0, 0, 30)
+	Frame2.Size = UDim2.new(0, 150, 0, 100)
 	Frame2.Active = false
 	Frame2.Draggable = false
 	Frame2.Visible = true
@@ -110,7 +110,7 @@ function RedGui(ThemeBackground)
 	Mini.Name = "Mini"
 	Mini.Parent = Frame
 	Mini.Size = UDim2.new(0, 25, 0, 25)
-	Mini.Position = UDim2.new(0.825, 0, 0, 0)
+	Mini.Position = UDim2.new(0, 125, 0, 0)
 	Mini.Text = "-"
 	Mini.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Mini.TextColor3 = Color3.fromRGB(0, 0, 0)
