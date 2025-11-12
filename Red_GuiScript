@@ -76,8 +76,8 @@ function RedGui(ThemeBackground)
 	Frame2.BackgroundTransparency = 0.5
 	Frame2.BorderColor3 = ThemeColor.FrameBorder
 	Frame2.BorderSizePixel = 2
-	Frame2.Position = UDim2.new(0, 0, 0, 30)
-	Frame2.Size = UDim2.new(0, 150, 0, 100)
+	Frame2.Position = UDim2.new(0, 0, 1, 2)
+	Frame2.Size = UDim2.new(0, 150, 0, 185)
 	Frame2.Active = false
 	Frame2.Draggable = false
 	Frame2.Visible = true
