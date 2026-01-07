@@ -565,9 +565,9 @@ function RedGui(ThemeBackground)
 		local curButton = curButton
 		local newInsertSelect = Instance.new("TextButton", curFrame)
 		MakeInvButton(curFrame)
-		newInsertSelect.Name = Name
+		newInsertSelect.Name = tostring(Value)
 		newInsertSelect.Size = UDim2.new(0, 125, 0, 25)
-		newInsertSelect.Text = Name
+		newInsertSelect.Text = tostring(Value)
 		newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
 		newInsertSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
 		newInsertSelect.BorderSizePixel = 2
