@@ -553,6 +553,40 @@ function RedGui(ThemeBackground)
 		return newToggleSelect
 	end
 	
+	function addInsertSelect(Table, Value, currentButton)
+		if currentButton == nil then
+			curButton = _G.curSelectedButton
+			curFrame = _G.curSelected
+		elseif currentButton ~= nil then
+			curButton = currentButton.Button
+			curFrame = currentButton.Frame
+		end
+		local curFrame = curFrame
+		local curButton = curButton
+		local newInsertSelect = Instance.new("TextButton", curFrame)
+		MakeInvButton(curFrame)
+		newInsertSelect.Name = Name
+		newInsertSelect.Size = UDim2.new(0, 125, 0, 25)
+		newInsertSelect.Text = Name
+		newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
+		newInsertSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
+		newInsertSelect.BorderSizePixel = 2
+		newInsertSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
+		newInsertSelect.TextScaled = true
+		newInsertSelect.BackgroundTransparency = 0.5
+		newInsertSelect.MouseButton1Click:Connect(function()
+			if not Table[Value] then
+				table.insert(Table, Value)
+				newInsertSelect.BackgroundColor3 = Color3.new(0, 1, 0)
+			else
+				table.remove(Table, Value)
+				newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
+			end
+		end)
+		
+		return newInsertSelect
+	end
+	
 	function addClickSelect(Text, currentButton)
 		if currentButton == nil then
 			curButton = _G.curSelectedButton
