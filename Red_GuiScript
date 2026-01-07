@@ -575,12 +575,13 @@ function RedGui(ThemeBackground)
 		newInsertSelect.TextScaled = true
 		newInsertSelect.BackgroundTransparency = 0.5
 		newInsertSelect.MouseButton1Click:Connect(function()
-			if not Table[Value] then
+			local ValueIndex = table.find(Table, Value)
+			if ValueIndex then
+				table.remove(Table, ValueIndex)
+				newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
+			else
 				table.insert(Table, Value)
 				newInsertSelect.BackgroundColor3 = Color3.new(0, 1, 0)
-			else
-				table.remove(Table, Value)
-				newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
 			end
 		end)
 		
