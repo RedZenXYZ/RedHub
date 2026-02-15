@@ -325,15 +325,10 @@ function RedGui(ThemeBackground)
 		return newTextLabel
 	end
 	
-	function addTextBox(text1, holderText1)
-		local Text = text1
-		local holderText = holderText1
-		if Text == nil then
-			Text = ""
-		end
-		if holderText == nil then
-			holderText = ""
-		end
+	function addTextBox(text1, callback, holderText1)
+		local Text = text1 or ""
+		local holderText = holderText1 or ""
+		
 		local newTextBox = Instance.new("TextBox", curFrame)
 		MakeInvButton(curFrame)
 		newTextBox.Name = Text
@@ -347,6 +342,15 @@ function RedGui(ThemeBackground)
 		newTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 		newTextBox.TextScaled = true
 		newTextBox.BackgroundTransparency = 0.5
+		newTextBox.FocusLost:Connect(function(EnterPressed)
+			if not EnterPressed then 
+				return
+			else
+				callback(newTextBox.Text)
+				task.wait(0.18)
+				newTextBox.Text = ""  
+			end
+		end)
 	
 		return newTextBox
 	end
@@ -450,6 +454,34 @@ function RedGui(ThemeBackground)
 			
 			return newToggleButton
 		end
+	end
+	
+	function addToggleState(buttonText, callback)
+		local toggled = false
+		local newToggleButton = Instance.new("TextButton", curFrame)
+		MakeInvButton(curFrame)
+		newToggleButton.Name = buttonText
+		newToggleButton.Size = UDim2.new(0, 125, 0, 25)
+		newToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		newToggleButton.Text = buttonText .. " (Off)"
+		newToggleButton.TextScaled = true
+		newToggleButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+		newToggleButton.BorderSizePixel = 2
+		newToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		newToggleButton.TextScaled = true
+		newToggleButton.BackgroundTransparency = 0.5
+		newToggleButton.MouseButton1Click:Connect(function()
+			if toggled then
+				newToggleButton.Text = buttonText .. " (On)"
+				newToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+			else
+				newToggleButton.Text = buttonText .. " (Off)"
+				newToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+			end
+			toggled = not toggled
+			pcall(callback, toggled)
+		end)
+		return newToggleButton
 	end
 	
 	function addSelected(Text)
