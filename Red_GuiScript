@@ -471,7 +471,7 @@ function RedGui(ThemeBackground)
 		newToggleButton.TextScaled = true
 		newToggleButton.BackgroundTransparency = 0.5
 		newToggleButton.MouseButton1Click:Connect(function()
-			if toggled then
+			if not toggled then
 				newToggleButton.Text = buttonText .. " (On)"
 				newToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 			else
@@ -569,112 +569,4 @@ function RedGui(ThemeBackground)
 		newToggleSelect.BackgroundColor3 = buttonColor
 		newToggleSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
 		newToggleSelect.BorderSizePixel = 2
-		newToggleSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
-		newToggleSelect.TextScaled = true
-		newToggleSelect.BackgroundTransparency = 0.5
-		newToggleSelect.MouseButton1Click:Connect(function()
-			if Table[Name] == true then
-				Table[Name] = false
-				newToggleSelect.BackgroundColor3 = Color3.new(1, 0, 0)
-			elseif Table[Name] == false then
-				Table[Name] = true
-				newToggleSelect.BackgroundColor3 = Color3.new(0, 1, 0)
-			end
-		end)
-		
-		return newToggleSelect
-	end
-	
-	function addInsertSelect(Table, Value, currentButton)
-		if currentButton == nil then
-			curButton = _G.curSelectedButton
-			curFrame = _G.curSelected
-		elseif currentButton ~= nil then
-			curButton = currentButton.Button
-			curFrame = currentButton.Frame
-		end
-		local curFrame = curFrame
-		local curButton = curButton
-		local newInsertSelect = Instance.new("TextButton", curFrame)
-		MakeInvButton(curFrame)
-		newInsertSelect.Name = tostring(Value)
-		newInsertSelect.Size = UDim2.new(0, 125, 0, 25)
-		newInsertSelect.Text = tostring(Value)
-		newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
-		newInsertSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
-		newInsertSelect.BorderSizePixel = 2
-		newInsertSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
-		newInsertSelect.TextScaled = true
-		newInsertSelect.BackgroundTransparency = 0.5
-		newInsertSelect.MouseButton1Click:Connect(function()
-			local ValueIndex = table.find(Table, Value)
-			if ValueIndex then
-				table.remove(Table, ValueIndex)
-				newInsertSelect.BackgroundColor3 = Color3.new(1, 0, 0)
-			else
-				table.insert(Table, Value)
-				newInsertSelect.BackgroundColor3 = Color3.new(0, 1, 0)
-			end
-		end)
-		
-		return newInsertSelect
-	end
-	
-	function addClickSelect(Text, currentButton)
-		if currentButton == nil then
-			curButton = _G.curSelectedButton
-			curFrame = _G.curSelected
-		elseif currentButton ~= nil then
-			curButton = currentButton.Button
-			curFrame = currentButton.Frame
-		end
-		local curFrame = curFrame
-		local curButton = curButton
-		local newClickSelect = Instance.new("TextButton", curFrame)
-		MakeInvButton(curFrame)
-		newClickSelect.Name = Text
-		newClickSelect.Size = UDim2.new(0, 125, 0, 25)
-		newClickSelect.Text = Text
-		newClickSelect.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		newClickSelect.BorderColor3 = Color3.fromRGB(255, 255, 255)
-		newClickSelect.BorderSizePixel = 2
-		newClickSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
-		newClickSelect.TextScaled = true
-		newClickSelect.BackgroundTransparency = 0.5
-		newClickSelect.MouseButton1Click:Connect(function()
-			curButton.Text = Text
-		end)
-		
-		return newClickSelect
-	end
-	
-	function OnKillGui(callback)
-		KillGui.MouseButton1Click:Connect(callback)
-	end
-	
-	function MakeInvButton(frame)
-		if frame:FindFirstChild("Inv Button 2") then
-			frame:FindFirstChild("Inv Button 2"):Destroy()
-		end
-		local InvButtonTwo = Instance.new("Frame", frame)
-		InvButtonTwo.Name = "Inv Button 2"
-		InvButtonTwo.Size = UDim2.new(0, 0, 0, 0)
-		InvButtonTwo.BorderSizePixel = 0
-		InvButtonTwo.BackgroundTransparency = 1
-	end
-	
-	--- [ Gui Script ] ---
-	spawn(function() FrameStorage:WaitForChild("1").Visible = true end)
-	
-	spawn(function()
-		repeat wait(1)
-			pcall(function()
-				if #FrameStorage:GetChildren() <= 1 then
-					Page.Visible = false
-				else
-					Page.Visible = true
-				end
-			end)
-		until RedGui.Parent == nil
-	end)
-end
+		newToggleSelect.Text
