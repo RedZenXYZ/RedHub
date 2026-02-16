@@ -461,8 +461,12 @@ function RedGui(ThemeBackground)
 	end
 	
 	function addToggleState(buttonText, callback)
+		local ToggleFUNC = {}
 		local toggled = false
+		local buttonText = buttonText or "Button"
+		
 		local newToggleButton = Instance.new("TextButton", curFrame)
+		ToggleFUNC["Button"] = newToggleButton
 		MakeInvButton(curFrame)
 		newToggleButton.Name = buttonText
 		newToggleButton.Size = UDim2.new(0, 125, 0, 25)
@@ -485,7 +489,22 @@ function RedGui(ThemeBackground)
 			toggled = not toggled
 			pcall(callback, toggled)
 		end)
-		return newToggleButton
+		
+		function ToggleFUNC:UpdateToggle(isTogOn)
+			isTogOn = isTogOn or toggle
+			if isTogOn then
+				toggled = true
+				newToggleButton.Text = buttonText .. " (On)"
+				newToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+				pcall(callback, toggled)
+			else
+				toggled = false
+				newToggleButton.Text = buttonText .. " (Off)"
+				newToggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+				pcall(callback, toggled)
+			end
+		end
+		return ToggleFUNC
 	end
 	
 	function addSelected(Text)
