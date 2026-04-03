@@ -460,7 +460,7 @@ function RedGui(ThemeBackground)
 		end
 	end
 	
-	function addToggleState(buttonText, callback)
+	function addToggleState(buttonText, callback, state)
 		local ToggleFUNC = {}
 		local toggled = false
 		local buttonText = buttonText or "Button"
@@ -504,6 +504,10 @@ function RedGui(ThemeBackground)
 				pcall(callback, toggled)
 			end
 		end
+		if state ~= nil then
+			ToggleFUNC:UpdateToggle(state)
+		end
+		
 		return ToggleFUNC
 	end
 	
