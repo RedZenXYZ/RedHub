@@ -619,7 +619,7 @@ function RedGui(ThemeBackground)
 		newInsertSelect.Name                  = tostring(Value)
 		newInsertSelect.Size                  = UDim2.new(0, 125, 0, 25)
 		newInsertSelect.Text                  = tostring(Value)
-		newInsertSelect.BackgroundColor3      = Color3.new(1, 0, 0)
+		newInsertSelect.BackgroundColor3      = table.find(Table, Value) and Color3.new(0, 1, 0) or Color3.new(1, 0, 0)
 		newInsertSelect.BorderColor3          = Color3.fromRGB(255, 255, 255)
 		newInsertSelect.BorderSizePixel       = 2
 		newInsertSelect.TextColor3            = Color3.fromRGB(255, 255, 255)
